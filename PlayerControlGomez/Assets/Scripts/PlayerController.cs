@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     private float turnSpeed = 45.0f;
     private float horizontalInput;
     private float forwardInput;
+    public Camera MainCamera;
+    public Camera DriveCamera;
+    public KeyCode space;
 
     void Start()
     {
@@ -23,5 +26,11 @@ public class PlayerController : MonoBehaviour
         // move fwd
         transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
         transform.Rotate(Vector3.up * turnSpeed * horizontalInput * Time.deltaTime);
+
+        if (Input.GetKeyDown(space))
+        {
+            MainCamera.enabled = !MainCamera.enabled;
+            DriveCamera.enabled = !DriveCamera.enabled;
+        }
     }
 }
